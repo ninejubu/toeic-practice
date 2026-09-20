@@ -435,6 +435,14 @@ function selectOpt(oi){
     return;
   }
   renderQ();
+  // auto-advance to the next question (skip if user navigated in the meantime)
+  const n = totalQ(set);
+  const from = state.idx;
+  if(from < n-1){
+    setTimeout(()=>{
+      if(state.idx === from){ state.idx++; renderQ(); }
+    }, 350);
+  }
 }
 function go(delta){
   const set = SETS[state.set];
